@@ -149,7 +149,10 @@ comment:
 
 # Friend Links widget. Empty links will hide widget.
 #alink: footlinks/links
-links:
+footlinks:
+  - title: 카지노사이트
+    url: https://choegocasino.com/
+
 #  - title: site-name1
 #    url: http://www.example1.com/
 #  - title: site-name2
