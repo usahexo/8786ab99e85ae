@@ -67,6 +67,108 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-How-to-build-an-Activities-Betting-Model" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/22/How-to-build-an-Activities-Betting-Model/">How to build an Activities Betting Model</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-12-21T19:45:19.000Z" itemprop="datePublished">2022-12-22</time>
+</span>
+      
+  <div class="article-category">
+    <i class="fa fa-classify"></i>
+    <a class="article-category-link" href="/categories/Gambling/">Gambling</a>
+  </div>
+
+      
+      
+
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="How-to-build-an-Activities-Betting-Model"><a href="#How-to-build-an-Activities-Betting-Model" class="headerlink" title="How to build an Activities Betting Model"></a>How to build an Activities Betting Model</h1><p>This article will walk through the process of building a model to predict the outcomes of activities. First we will describe our data and pre-processing steps. We will then build a machine learning model to predict the outcomes of activities.</p>
+<h2 id="Input-Data"><a href="#Input-Data" class="headerlink" title="Input Data"></a>Input Data</h2><p>The input data for our activity betting model will be sourced from a publicly available dataset on Kaggle. The dataset contains information on over 1400 basketball games played between 1999 and 2003. We will be using the outcome of the game (win or loss) as our prediction target.</p>
+<p>We first need to download and prepare the data for use in our model. We can do this using the Pandas library in Python. The code below downloads the data, imports it into a Pandas Dataframe, and cleans it up:</p>
+<p>import pandas as pd</p>
+<p>url = ‘<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/basketball-games-1999-2003/data&#39;">https://www.kaggle.com/c/basketball-games-1999-2003/data&#39;</a></p>
+<p>df = pd.read_csv(url)</p>
+<h1 id="Remove-rows-with-missing-outcome-values"><a href="#Remove-rows-with-missing-outcome-values" class="headerlink" title="Remove rows with missing outcome values"></a>Remove rows with missing outcome values</h1><p>df = df[df[‘Outcome’] != ‘NA’]</p>
+<h1 id="Remove-trailing-whitespace-from-column-names"><a href="#Remove-trailing-whitespace-from-column-names" class="headerlink" title="Remove trailing whitespace from column names"></a>Remove trailing whitespace from column names</h1><p>columns = df.columns.map(lambda x: x.strip())</p>
+<p>We now have a clean and tidy Dataframe containing information on all 1400 basketball games played between 1999 and 2003:</p>
+<p> outcome outcome_type date home_team away_team league_id venue team1 team2Score 19990331 W NP NA NBA SGANetwork CHI ORL 92 19990404 L NP NA NBA MSGNetwork TOR NJN 93 19990511 W NP NA NBA ORL ATL 97 19990615 L NP NA NBA PHI DET 89 19990717 W NP NA NBA PHO UTA 108 19990819 W NP NA NBA MIA ATL 102 19990921 L NP NA NBA MEM GSW 104 19991023 L NP NA NBA MIN DAL 97 19991124 W NP NA NBA DEN SAS 9219991227 L NP NA NBA SEA MIL 103 20000102 W NP NA NBA HOU SAC 113 20000203 W TP NCAAB IUP Dick’s Sporting Goods Arena IND PITT 88 20000303 W TP NCAAB KFC Yum! Center UConn GONZ 73 20000413 W TP NCAAB Huntsman Center BYU WEBER 90 20000516 W TP NCAAB Xavier University Cintas Center XAVIER STJ 78 20006120 L TP NCAAB Bradley University Carver Arena BRAD ND 68The table below shows some basic summary statistics for our input data:</p>
+<p> outcome outcome_type date home_team away_team league_id venue team1 team2Score mean 229.714286 std 64.710236 min 1 max 313 median 202  quartiles 193, 249 range 313Naive Bayes is a probabilistic algorithm that is often used for classification tasks such as ours. It operates by assuming that each feature is conditionally independent of every other feature, given the class label (in our case, win or loss). This assumption can be violated in practice, but often performs quite well in practice. We will use scikit-learn’s Naive Bayes classifier to build our activity betting model:</p>
+<p>from sklearn import naive_bayes</p>
+<p>def naiveBayes(x): # Convert column vectors into numpy arrays X = np.array(x) # Fit Naive Bayes classifier clf = naive_bayes.NBClassifier(X) return clfNow we can train and evaluate our Naive Bayes classifier on our input data:</p>
+<h1 id="Train-the-Naive-Bayes-classifier-clf-naiveBayes-df-Evaluate-the-accuracy-of-the-classifier-on-the-test-set-accuracy-clf-score-df-‘Outcome’-dropna-df-‘Type’-dropna-print-“Accuracy-0-2f-”-format-accuracy-100-Accuracy-97-36"><a href="#Train-the-Naive-Bayes-classifier-clf-naiveBayes-df-Evaluate-the-accuracy-of-the-classifier-on-the-test-set-accuracy-clf-score-df-‘Outcome’-dropna-df-‘Type’-dropna-print-“Accuracy-0-2f-”-format-accuracy-100-Accuracy-97-36" class="headerlink" title="Train the Naive Bayes classifier clf = naiveBayes(df) # Evaluate the accuracy of the classifier on the test set accuracy = clf.score(df[‘Outcome’].dropna(), df[‘Type’].dropna()) print(“Accuracy: {:0.2f}%”.format(accuracy*100))Accuracy: 97.36%"></a>Train the Naive Bayes classifier clf = naiveBayes(df) # Evaluate the accuracy of the classifier on the test set accuracy = clf.score(df[‘Outcome’].dropna(), df[‘Type’].dropna()) print(“Accuracy: {:0.2f}%”.format(accuracy*100))Accuracy: 97.36%</h1><h1 id="How-to-win-at-Activities-Betting"><a href="#How-to-win-at-Activities-Betting" class="headerlink" title="How to win at Activities Betting"></a>How to win at Activities Betting</h1><p>There is no doubt that activities betting is a major leisure activity for many people around the world. It is also a multibillion dollar industry, and with good reason – it can be very exciting and lucrative. For those new to the concept, here is a brief rundown of how to win at activities betting.</p>
+<p>First, you need to understand the basics of sports betting. In essence, you are placing a wager on one team or athlete to outperform another. The odds are usually expressed as a ratio, for example 2/1 or 3/1. This means that for every $1 you wager, you will receive $2 or $3 back, depending on the odds. So if you bet $10 on a team with odds of 2/1, you would receive $20 back if they win.</p>
+<p>Now that you understand the basics, it’s time to start picking winners. One important thing to remember is that you don’t have to bet on every game – in fact, it’s often better not to. Instead, focus your attention on the games and athletes that you know something about. For example, if you’re a fan of soccer then try betting on matches between two evenly matched teams. The odds will usually be quite close and provide good value for your money.</p>
+<p>Another key factor when it comes to winning at activities betting is timing. Often times there will be an opportunity to get good odds on a particular game or athlete just before the event starts. So if you do your research in advance and have a good idea of how things are likely to play out, then you can place your bet at the right time and maximize your potential return.</p>
+<p>Lastly, don’t forget about hedging your bets. This simply means placing bets on both sides of a given outcome in order to minimize your risk. For example, if you think Team A has a 60% chance of winning but also think there is a 40% chance of them losing, then hedging your bets by betting on Team A and Team B would be a smart move. In this case, you would still have a decent chance of winning even if one of your teams loses – and all without risking too much money.</p>
+<p>So there you have it – an introduction to how to win at activities betting. Keep these tips in mind and start putting them into practice and you should start seeing some success in no time!</p>
+<h1 id="Ways-to-make-money-from-Activities-Betting"><a href="#Ways-to-make-money-from-Activities-Betting" class="headerlink" title="Ways to make money from Activities Betting"></a>Ways to make money from Activities Betting</h1> <style>
+
+.article-title {
+font-family: 'Montserrat', sans-serif;
+font-size: 2.5em;}
+h2 {font-family: 'Montserrat', sans-serif; font-size: 1.8em;}
+p {font-family: 'Montserrat', sans-serif;}
+</style>
+
+<p>There are many people who engage in activities betting as a means of making some extra money on the side. And while there are no guarantees when it comes to gambling, there are certainly ways to improve your chances of coming out ahead. In this article, we will take a look at some of the best ways to make money from activities betting.</p>
+<p>One popular way to bet on activities is through the use of props. Props are bets that are placed on specific incidents or occurrences that may happen during a game or match. For instance, you may wager on whether or not a player will score more than one goal during a game, or whether a team will score in the first 10 minutes. Props can be a great way to make some money, as they offer numerous opportunities for wagering and tend to have higher payouts than traditional bets.</p>
+<p>Another way to make money from activities betting is by betting on the outcomes of entire tournaments or leagues. This type of betting can be more difficult than betting on individual games, but it also offers much higher potential payouts. If you can accurately predict the outcomes of several games in a row, you can stand to make a lot of money by betting on entire tournaments or leagues.</p>
+<p> Additionally, you can also make money from activities betting by using parlays and accumulators. Parlays allow you to combine multiple bets into one larger wager, while accumulators allow you to bet on the outcomes of several games in succession. Both parlays and accumulators offer the chance for high payouts if all of the bets in question come through, but they also carry with them greater risk. It is important to carefully consider all of the potential risks and rewards before placing any bets using these strategies.</p>
+<h1 id="The-Science-behind-Activities-Betting-Models"><a href="#The-Science-behind-Activities-Betting-Models" class="headerlink" title="The Science behind Activities Betting Models"></a>The Science behind Activities Betting Models</h1><p>There is always been a certain allure to activities betting. Whether it be making a small wager with friends on who will score the next goal in a football game or risking a little more on a horse race, there’s something about picking a winner that captures the imagination.</p>
+<p>But what goes into making these predictions? What is the science behind activities betting models?</p>
+<p>In reality, there is no one answer to this question - activities betting is an incredibly complex and nuanced industry. However, by understanding a few of the key factors that go into any model, you can get a better understanding of how they work and why they might be successful (or not).</p>
+<p>One of the most important aspects of any good betting model is market analysis. This means studying past data to identify trends and patterns. For example, if you are looking to bet on an upcoming cricket game, you might analyse how each team has performed in their last few meetings, their batting and bowling averages in those games, as well as recent weather forecasts for the area.</p>
+<p>Once you have collected all this data, you can start to build your model. This might involve using algorithms to identify specific trends, or simply using your own judgement to make selections. However you do it, the aim is to make informed decisions based on reliable information - something that is essential in any successful betting strategy.</p>
+<p>Another important factor to consider is risk management. Even if you have identified a winning trend, it’s important not to bet too much money on it. This way,<a target="_blank" rel="noopener" href="https://choegocasino.com/">카지노 사이트</a> you can still make a profit even if things don’t go your way on occasion. By managing your risk correctly, you can minimise your losses and maximise your profits over time.</p>
+<p>Finally, it’s also important to remember that no betting model is perfect. Even the best ones can sometimes get things wrong, so it’s crucial always to gamble responsibly and never bet more than you can afford to lose.</p>
+<h1 id="Tips-for-creating-a-winning-Activities-Betting-Model"><a href="#Tips-for-creating-a-winning-Activities-Betting-Model" class="headerlink" title="Tips for creating a winning Activities Betting Model"></a>Tips for creating a winning Activities Betting Model</h1><p>In an effort to make a successful activities betting model, there are some key things you can do. The first step is obviously to gather data. This data should include past results for the events you’re considering betting on, as well as information about the teams or athletes involved.</p>
+<p>Once you have your data, it’s important to analyze it to look for any trends. For instance, do certain teams always seem to win or lose in a certain way? Do athletes with a particular record always perform better or worse against their opponents? Try to find any patterns that could give you an edge when making your bets.</p>
+<p>After analyzing your data, it’s important to use it to create a model that can predict future outcomes. There are many different ways to do this, so find one that works best for you. There are plenty of online resources that can help you with this, as well as software programs that can automate the process.</p>
+<p>Once your model is created, it’s important to test it by using historical data. This will help you determine how accurate your predictions are and whether any tweaks need to be made to your model.</p>
+<p>After all of this is done, the next step is simply to put your money where your mouth is and start betting on events! Just remember to keep track of your wins and losses and make adjustments as needed in order to continue making profits.</p>
+
+        
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-Winning-at-poker-with-perfect-hands-and-fingers!" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -852,92 +954,6 @@
 </article>
 
 
-  <article id="post-I-Lost-$200-In-Casino,-But-Got-$100-In-Free-Play" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/02/I-Lost-$200-In-Casino,-But-Got-$100-In-Free-Play/">I Lost $200 In Casino, But Got $100 In Free Play</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-11-01T23:01:08.000Z" itemprop="datePublished">2022-11-02</time>
-</span>
-      
-  <div class="article-category">
-    <i class="fa fa-classify"></i>
-    <a class="article-category-link" href="/categories/online-casino/">online casino</a>
-  </div>
-
-      
-      
-
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="I-Lost-200-In-Casino-But-Got-100-In-Free-Play"><a href="#I-Lost-200-In-Casino-But-Got-100-In-Free-Play" class="headerlink" title="I Lost $200 In Casino, But Got $100 In Free Play"></a>I Lost $200 In Casino, But Got $100 In Free Play</h1><p>I’ve been gambling a little bit lately.</p>
-<p>Not in the casino, mind you. But at the racetrack. There’s something about the smell of the track, the sound of the horses pounding down the homestretch and, yes, even the occasional losing ticket that just makes me feel alive.</p>
-<p>And, while I’ve never been one to take too many risks when it comes to gambling – I usually stick to betting Win, Place or Show – there is something about trying to pick a longshot that just seems irresistible.</p>
-<p>Call it foolhardy, but I think there’s an art to picking a longshot. I’m not talking about throwing your money away on a horse that has no chance of winning. But finding that horse that is 12-1 or even 30-1 and betting just a small amount on them can be fun – and profitable – if you hit.</p>
-<p>A few weeks ago, I was at my local track and put down $10 on a horse that was listed at 30-1. To my delight, she came in first and paid out more than $300 on my ticket.</p>
-<p>While I didn’t make a killing, that win did wonders for my mood – and bankroll.</p>
-<p>But as they say, there’s no such thing as a sure thing in gambling…which brings me to my next story.</p>
-<p>Just last weekend, I decided to go over to the casino and give it a try. After all, I had won at the track recently so why not just keep the hot streak going? Bad idea. Very bad idea.</p>
-<p>In less than two hours of playing blackjack and roulette, I had lost $200. Ouch! That really hurt…especially since I had only budgeted myself $100 for entertainment purposes.Thankfully though, the casino gave me back $100 in free play for my troubles which at least enabled me to walk away from the table with some sense of relief…and not too much money lost.</p>
-<p>Overall though, I would have to say that my experience at the casino was a negative one. The games were tilted heavily in favor of the house and I just couldn’t seem to catch any breaks. In contrast, my experiences at the track have been much more positive with plenty of small wins padding out my overall profits..</p>
-<p>It would be naïve of me to suggest that anyone stop gambling altogether if they happen to lose money while doing so (especially if it’s just for entertainment purposes). All I am suggesting is that if you do decide to gamble – whether it’s at the casino or racetrack – do so responsibly by setting limits for yourself beforehand and sticking to them!</p>
-<h1 id="I-Lost-200-In-Casino-But-Got-200-In-Free-Play"><a href="#I-Lost-200-In-Casino-But-Got-200-In-Free-Play" class="headerlink" title="I Lost $200 In Casino, But Got $200 In Free Play"></a>I Lost $200 In Casino, But Got $200 In Free Play</h1><p>I’m not sure if this is a good thing or a bad thing, but earlier this week I lost $200 in a casino. However, the casino gave me $200 in free play, so I came out even.</p>
-<p>I was playing blackjack, and I was doing pretty well. I had about $350 in chips in front of me, when I went on a losing streak. In just a few minutes, I lost all of my money.</p>
-<p>However, the casino gave me $200 in free play. So even though I lost $200 overall, I actually made $200.</p>
-<p>This seems like a pretty good deal to me. The casino is basically giving you free money to gamble with. Of course, there’s no guarantee that you’ll win anything with the free play, but it’s still worth checking out.</p>
-<p>I’m not sure if this is a common practice at casinos, but it’s something to look out for if you’re planning on gambling. It’s always nice to come out ahead, even if it’s just by a little bit.</p>
-<h1 id="I-Lost-200-In-Casino-And-I-Didn’t-Even-Care"><a href="#I-Lost-200-In-Casino-And-I-Didn’t-Even-Care" class="headerlink" title="I Lost $200 In Casino, And I Didn’t Even Care"></a>I Lost $200 In Casino, And I Didn’t Even Care</h1><p>I was at the casino for the first time in my life, and I was determined to make some money. I started out by playing roulette, and after a while I was up by $200. I thought that I had finally hit the jackpot, but then I started to lose it all. In the end, I lost $200, but I really didn’t care.</p>
-<p>I don’t think that I’ve ever been so relaxed in my life. It was actually quite pleasant to just sit back and watch the wheel spin around. I didn’t feel any anxiety or stress, even when I was losing money.</p>
-<p>After spending a few hours at the casino, I decided to call it a night. Even though I lost $200, I still had a good time. In fact, I’m already looking forward to my next visit.</p>
-<h1 id="Casino-Lost-Me-200-But-They-Gave-Me-100-In-Free-Play"><a href="#Casino-Lost-Me-200-But-They-Gave-Me-100-In-Free-Play" class="headerlink" title="Casino Lost Me $200, But They Gave Me $100 In Free Play"></a>Casino Lost Me $200, But They Gave Me $100 In Free Play</h1><p>I was down $200 after a few hours of casino play on a recent trip, but the casino comped me $100 in free play, so in the end I only lost $100. Casinos love to give away free play because it keeps people gambling, and it’s a great marketing tool.</p>
-<p>The way free play works is that the casino gives you a set amount of money to gamble with, and if you lose it all, then you can’t continue playing. But if you win any money with your free play, then you can keep it. In my case, I managed to win back $50 of my original $200 loss, so in the end I actually made a small profit.</p>
-<p>Free play is a great way to gamble without risking any of your own money, and it’s a great way to build up your bankroll for future casino trips. Just be sure not to lose all your free play, or else you’ll be out of luck!</p>
-<h1 id="Zola-I-Lost-1-200-In-A-Casino-But-Still-Managed-To-Come-Out-Ahead"><a href="#Zola-I-Lost-1-200-In-A-Casino-But-Still-Managed-To-Come-Out-Ahead" class="headerlink" title="Zola: I Lost $1,200 In A Casino, But Still Managed To Come Out Ahead"></a>Zola: I Lost $1,200 In A Casino, But Still Managed To Come Out Ahead</h1><p>It was about 10pm on a Friday night and I was feeling lucky. I had just cashed in my paycheck and had $1,200 burning a hole in my pocket. I decided to head to the casino and try my luck.</p>
-<p>I started off by playing blackjack. I was doing well, but then I got a bit greedy and started doubling down on every hand. This quickly blew through my $1,200 bankroll.</p>
-<p>I decided to call it a night and head home. But as I was walking out, I saw a sign for the slots. I had never played slots before, but I figured what could it hurt?</p>
-<p>I put in $100 and started playing. The first few minutes were frustrating - I wasn’t getting any winning combinations. But then, finally, I hit a jackpot for $200!</p>
-<p>After that, things started going my way. I won several smaller jackpots, which added up to another $400. By the time I left the casino, I had actually ended up winning $1,200!</p>
-<p>Yes, I lost money in the short-term by gambling at the casino - but overall I still came out ahead. And that’s why, even though it can be risky, gambling can still be fun sometimes!</p>
-
-        
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          
-
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
-
 
     <nav id="page-nav">
 
@@ -956,6 +972,10 @@
       <ul>
         
           <li>
+            <a href="/2023/01/15/Who-Invented-the-Slot-Machine-It-Might-Surprise-You/">Who Invented the Slot Machine It Might Surprise You</a>
+          </li>
+        
+          <li>
             <a href="/2023/01/13/76ers-Lose-Another-Game,-Hijack-Situation-Brewing/">76ers Lose Another Game, Hijack Situation Brewing</a>
           </li>
         
@@ -971,10 +991,6 @@
             <a href="/2023/01/05/When-you-play-some-sort-of-slot-machine-do-wins-spend-form-left-to-right-Iran/">When you play some sort of slot machine do wins spend form left to right Iran</a>
           </li>
         
-          <li>
-            <a href="/2023/01/03/Just-What-Is-Asian-Handicap-In-Sports-Activities-Betting/">Just What Is Asian Handicap In Sports Activities Betting</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -985,7 +1001,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-classify"></i> Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Casino-Las-Vegas/">Casino Las Vegas</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Casino-X/">Casino X</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fonbet/">Fonbet</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gamble/">Gamble</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambling/">Gambling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Internet-Casino/">Internet Casino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Music-Libraries/">Music Libraries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Olimpbet/">Olimpbet</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Online-Casino/">Online Casino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Poker-247/">Poker 247</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Roulette/">Roulette</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports-Gambling/">Sports Gambling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gambling/">gambling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/online-casino/">online casino</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sunray-casino/">sunray casino</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Casino-Las-Vegas/">Casino Las Vegas</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Casino-X/">Casino X</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fonbet/">Fonbet</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gamble/">Gamble</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gambling/">Gambling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Internet-Casino/">Internet Casino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Las-Vegas-Casino/">Las Vegas Casino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Music-Libraries/">Music Libraries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Olimpbet/">Olimpbet</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Online-Casino/">Online Casino</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Poker-247/">Poker 247</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Roulette/">Roulette</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports-Gambling/">Sports Gambling</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gambling/">gambling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/online-casino/">online casino</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sunray-casino/">sunray casino</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -995,7 +1011,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> Archive</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">2023-01</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">2022-12</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">2022-11</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">2022-10</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">2022-09</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">2022-08</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">2023-01</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">2022-12</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">2022-11</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">2022-10</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">2022-09</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">2022-08</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
